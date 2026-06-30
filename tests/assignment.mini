@@ -1,0 +1,11 @@
+begin
+
+_ = -1;
+
+_unused = 0;
+
+var1 = 1;
+
+var2 = _unused + var1;
+
+end

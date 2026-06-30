@@ -1,0 +1,16 @@
+begin
+
+print("Hola, Mundo!.");
+
+a = 10;
+b = 20;
+
+print(a);
+
+print(a + b);
+
+print( ( a / b ) * ( b / a ) );
+
+print(b==b);
+
+end
