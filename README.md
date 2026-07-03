@@ -106,5 +106,5 @@ Para ejecutarlo, se tiene que indicar la direccion de un archivo de texto en la 
 
 ```bash
 # Ejemplo para las pruebas
-./minilang.out ./../assignment.mini
+./minilang.out ./../tests/assignment.mini
 ```

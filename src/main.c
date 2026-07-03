@@ -4,7 +4,7 @@
 #include "lexer.h"
 #include "parser.h"
 
-#define FILE_SIZE 4096
+#define FILE_SIZE 1024
 
 int main(int argc, char *argv[])
 {
@@ -17,16 +17,17 @@ int main(int argc, char *argv[])
     for (size_t i = 1; i < argc; i++)
     {
         FILE *fileptr = fopen(argv[i], "r");
-        char *buffer = NULL;
-        size_t len;
-        size_t bytes_read = getdelim(&buffer, &len, '\0', fileptr);
+        char buffer[FILE_SIZE] = {0};
+        char file[FILE_SIZE * 4] = {0};
 
-        if (bytes_read != -1)
+        while (fgets(buffer, sizeof(buffer), fileptr) != NULL)
         {
-            input = buffer;
-            pos = 0;
-
-            parse();
+            strcat(file, buffer);
         }
+
+        input = file;
+        pos = 0;
+
+        parse();
     }
 }
