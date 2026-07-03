@@ -190,6 +190,21 @@ Token getNextToken()
         break;
     }
 
+    if (isalpha(c) || c == '_')
+    {
+        int counter = 0;
+        char identifier[128] = "";
+        identifier[counter] = c;
+
+        while (isalnum(next) || next == '_')
+        {
+            identifier[++counter] = next;
+            c = input[pos++];
+            next = input[pos];
+        }
+        return (Token){TOKEN_ID, .name = strdup(identifier)};
+    }
+
     return (Token){TOKEN_INVALID, 0};
 }
 
@@ -197,10 +212,14 @@ Token getNextToken()
 void main()
 {
     Token token;
-    input = "if(1)\n";
+    input = "begin\nhola=2;end\n";
     while (token.type != TOKEN_EOF)
     {
         token = getNextToken();
         printf("%d\n", token);
+        if (token.type == TOKEN_ID)
+        {
+            printf("%s\n", token.name);
+        }
     }
 }

@@ -39,7 +39,7 @@ typedef struct
     {
         int number;
         char *name;
-    } content;
+    };
 
 } Token;
 
