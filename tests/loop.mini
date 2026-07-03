@@ -2,9 +2,9 @@ begin
 
 counter = 0;
 
-while (contador < 5)
+while (counter < 5)
 {
-contador = contador + 1 / 2 * 5 == 5;
+counter = counter + 1 / 2 * 5 == 5;
 }
 
 end

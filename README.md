@@ -38,13 +38,13 @@ Unicamente se puede inicializar variables, usando el operador `=`, posteriorment
 Solo se permiten numeros enteros.
 
 ```none
-[0-9][0-9]*
+[+-]*[0-9][0-9]*
 ```
 
 #### 5. Cadenas
 
 ```none
-"[A-Za-z0-9_]*"
+"[A-Za-z0-9!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]*"
 ```
 
 ### Forma de Backus-Naur que representa la gramatica
@@ -96,7 +96,15 @@ Las 4 funcionalidades principales son puestas a prueba en los archivos dentro de
 Para compilar, ejecute el siguiente comando, dependiendo su sistema:
 
 ```bash
-# Ocupo Linux, no recuerdo como se compila en Windows sin usar Wine, tal vez con Cygwin on MinGW
-# Actualizaremos esta seccion conforme lo desarrollemos.
-gcc main.c -o minilang.out
+#Dentro de la carpeta src/
+
+# Linux
+gcc main.c lexer.c parser.c -o minilang.out
+```
+
+Para ejecutarlo, se tiene que indicar la direccion de un archivo de texto en la linea de comando.
+
+```bash
+# Ejemplo para las pruebas
+./minilang.out ./../assignment.mini
 ```

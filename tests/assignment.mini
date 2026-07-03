@@ -1,7 +1,5 @@
 begin
 
-_ = -1;
-
 _unused = 0;
 
 var1 = 1;
