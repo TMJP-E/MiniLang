@@ -7,12 +7,12 @@ A -> begin B end
 B -> CB | e
 C -> W | X | Y | Z
 
-W -> I=E
+W -> I=E;
 X -> if(E){B}P
 P -> else{B} | e
-Y -> while(B)
-Z -> print(B)
-Z -> print(S)
+Y -> while(E){B}
+Z -> print(E);
+Z -> print(S);
 
 E -> TE'
 E' -> +TE' | -TE' | e

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void main()
+void main(int argc, char *argv[])
 {
     // TODO
 }
