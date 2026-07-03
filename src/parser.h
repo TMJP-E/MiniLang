@@ -22,7 +22,7 @@ T' -> *FT' | /FT' | e
 
 
 F -> LF'
-F' -> <LF' | >LF' | <=LF' | >=LF' | ==LF' | !=LF' | e
+F' -> <LF' | <=LF' | >LF' | >=LF' | ==LF' | !=LF' | e
 
 L -> I
 L -> N
@@ -35,5 +35,21 @@ S -> "[A-Za-z0-9_]*"
 */
 
 void parse();
+
+void A();
+void B();
+void C();
+void W();
+void X();
+void P();
+void Y();
+void Z();
+void E();
+void EP();
+void T();
+void TP();
+void F();
+void FP();
+void L();
 
 #endif

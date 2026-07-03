@@ -27,10 +27,7 @@ Token getNextToken()
     while (input[pos] == ' ')
         pos++;
 
-    while (input[pos] == '\n')
-        pos++;
-
-    while (input[pos] == '\t')
+    while (isspace(input[pos]))
         pos++;
 
     if (input[pos] == '\0')
@@ -39,13 +36,11 @@ Token getNextToken()
     if (isdigit(input[pos]))
     {
         int value = 0;
-
         while (isdigit(input[pos]))
         {
             value = value * 10 + (input[pos] - '0');
             pos++;
         }
-
         return (Token){TOKEN_NUMBER, value};
     }
 
@@ -55,8 +50,27 @@ Token getNextToken()
     switch (c)
     {
     case '+':
+        if (isdigit(next))
+        {
+            int value = 0;
+            while (isdigit(input[pos]))
+            {
+                value = value * 10 + (input[pos] - '0');
+                pos++;
+            }
+            return (Token){TOKEN_NUMBER, value};
+        }
         return (Token){TOKEN_PLUS, 0};
     case '-':
+    {
+        int value = 0;
+        while (isdigit(input[pos]))
+        {
+            value = value * 10 + (input[pos] - '0');
+            pos++;
+        }
+        return (Token){TOKEN_NUMBER, -value};
+    }
         return (Token){TOKEN_MINUS, 0};
     case '*':
         return (Token){TOKEN_MULT, 0};
@@ -99,7 +113,24 @@ Token getNextToken()
         }
         return (Token){TOKEN_GT, 0};
     case '"':
-        return (Token){TOKEN_QUOTE, 0};
+        int counter = 0;
+        char identifier[256] = "";
+        identifier[counter] = c;
+        while (next != '"' && (isprint(next) || isspace(next)))
+        {
+            identifier[++counter] = next;
+            c = input[pos++];
+            next = input[pos];
+        }
+        if (next == '"')
+        {
+            pos++;
+            return (Token){TOKEN_STRING, .name = strdup(identifier)};
+        }
+        else
+        {
+            return (Token){TOKEN_INVALID, 0};
+        }
     case ';':
         return (Token){TOKEN_SEMICOLON, 0};
     case 'b':
@@ -112,7 +143,7 @@ Token getNextToken()
         break;
     case 'e':
         loadLookup(4);
-        if (strcmp(keyword, "end\n") == 0)
+        if (strcmp(keyword, "end\n") == 0 || strcmp(keyword, "end\0") == 0)
         {
             pos += currentLookAhead;
             return (Token){TOKEN_END, 0};
@@ -206,20 +237,4 @@ Token getNextToken()
     }
 
     return (Token){TOKEN_INVALID, 0};
-}
-
-// Pruebas
-void main()
-{
-    Token token;
-    input = "begin\nhola=2;end\n";
-    while (token.type != TOKEN_EOF)
-    {
-        token = getNextToken();
-        printf("%d\n", token);
-        if (token.type == TOKEN_ID)
-        {
-            printf("%s\n", token.name);
-        }
-    }
 }
