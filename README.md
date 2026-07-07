@@ -100,6 +100,8 @@ Para compilar, ejecute el siguiente comando, dependiendo su sistema:
 
 # Linux
 gcc main.c lexer.c parser.c -o minilang.out
+# gcc puede ser reemplazado por el compilador de su eleccion.
+# Por razones de compatibilidad, no podemos compilarlo para todos los sistemas.
 ```
 
 Para ejecutarlo, se tiene que indicar la direccion de un archivo de texto en la linea de comando.
